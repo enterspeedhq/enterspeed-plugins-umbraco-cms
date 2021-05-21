@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.SsgServices.DefaultServices.Netlify
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices.DefaultServices.Netlify
 {
     public interface INetlifyProgressService
     {

@@ -2,11 +2,11 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Enterspeed.Umbraco.Demo.Web.Core.Models;
-using Enterspeed.Umbraco.Demo.Web.Core.Services;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Models;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Services;
 using Umbraco.Web.WebApi;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Controllers
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Controllers
 {
     [JsonCamelCaseFormatter]
     public class DeploymentController : UmbracoAuthorizedApiController

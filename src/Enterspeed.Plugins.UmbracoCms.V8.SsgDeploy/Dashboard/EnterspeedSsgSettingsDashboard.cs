@@ -2,7 +2,7 @@
 using Umbraco.Core.Composing;
 using Umbraco.Core.Dashboards;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Dashboard
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Dashboard
 {
     [Weight(31)]
     public class EnterspeedSsgSettingsDashboard : IDashboard

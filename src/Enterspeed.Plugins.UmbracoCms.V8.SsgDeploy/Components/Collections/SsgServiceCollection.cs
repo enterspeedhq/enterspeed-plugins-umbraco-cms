@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Enterspeed.Umbraco.Demo.Web.Core.Models;
-using Enterspeed.Umbraco.Demo.Web.Core.SsgServices;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices;
 using Umbraco.Core.Composing;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Components.Collections
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Components.Collections
 {
     public class SsgServiceCollection : BuilderCollectionBase<ISsgService>
     {

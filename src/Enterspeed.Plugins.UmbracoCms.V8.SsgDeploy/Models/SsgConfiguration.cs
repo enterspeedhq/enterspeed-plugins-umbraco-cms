@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Enterspeed.Umbraco.Demo.Web.Core.SsgServices;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Models
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Models
 {
     public class SsgConfiguration
     {

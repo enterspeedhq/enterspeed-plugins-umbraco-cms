@@ -1,4 +1,4 @@
-﻿namespace Enterspeed.Umbraco.Demo.Web.Core.Models
+﻿namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Models
 {
     public class ApiResponse<T>
     {

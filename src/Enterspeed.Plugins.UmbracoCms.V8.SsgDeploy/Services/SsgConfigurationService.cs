@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Enterspeed.Umbraco.Demo.Web.Core.Components.Collections;
-using Enterspeed.Umbraco.Demo.Web.Core.Models;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Components.Collections;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Services
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Services
 {
     public class SsgConfigurationService : ISsgConfigurationService
     {

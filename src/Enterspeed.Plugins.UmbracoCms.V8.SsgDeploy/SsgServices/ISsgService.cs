@@ -1,4 +1,4 @@
-﻿namespace Enterspeed.Umbraco.Demo.Web.Core.SsgServices
+﻿namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices
 {
     public interface ISsgService
     {

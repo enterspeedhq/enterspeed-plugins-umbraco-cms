@@ -1,6 +1,6 @@
-﻿using Enterspeed.Umbraco.Demo.Web.Core.Models;
+﻿using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Models;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Services
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Services
 {
     public interface ISsgConfigurationService
     {

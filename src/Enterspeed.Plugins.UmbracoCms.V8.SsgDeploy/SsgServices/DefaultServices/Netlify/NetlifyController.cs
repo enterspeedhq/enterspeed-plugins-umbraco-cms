@@ -2,7 +2,7 @@
 using System.Web.Http;
 using Umbraco.Web.WebApi;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.SsgServices.DefaultServices.Netlify
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices.DefaultServices.Netlify
 {
     [JsonCamelCaseFormatter]
     public class NetlifyController : UmbracoApiController

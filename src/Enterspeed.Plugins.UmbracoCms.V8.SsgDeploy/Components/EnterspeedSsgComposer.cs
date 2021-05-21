@@ -1,11 +1,10 @@
-﻿using Enterspeed.Umbraco.Demo.Web.Core.Components.Collections;
-using Enterspeed.Umbraco.Demo.Web.Core.Services;
-using Enterspeed.Umbraco.Demo.Web.Core.SsgServices;
-using Enterspeed.Umbraco.Demo.Web.Core.SsgServices.DefaultServices.Netlify;
+﻿using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Components.Collections;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Services;
+using Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices.DefaultServices.Netlify;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Components
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Components
 {
     public class EnterspeedSsgComposer : IUserComposer
     {

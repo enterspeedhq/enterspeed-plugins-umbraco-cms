@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.SsgServices.DefaultServices.Netlify
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.SsgServices.DefaultServices.Netlify
 {
     public class NetlifyProgressService : INetlifyProgressService
     {

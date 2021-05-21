@@ -1,6 +1,6 @@
 ﻿using Umbraco.Core.Composing;
 
-namespace Enterspeed.Umbraco.Demo.Web.Core.Components.Collections
+namespace Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy.Components.Collections
 {
     public static class CompositionExtensions
     {
