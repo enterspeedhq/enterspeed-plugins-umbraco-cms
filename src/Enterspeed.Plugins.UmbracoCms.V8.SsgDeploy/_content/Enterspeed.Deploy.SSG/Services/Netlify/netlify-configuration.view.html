@@ -1,0 +1,14 @@
+﻿<div ng-controller="Enterspeed.Deploy.SSG.Services.Netlify.Configuration as vm">
+    <umb-property property="deploymentUrlProperty">
+        <umb-property-editor model="deploymentUrlProperty"></umb-property-editor>
+    </umb-property>
+    <div class="mt4">
+        <h4>Netlify Configuration</h4>
+        <p>Add these URLs to the <a href="https://docs.netlify.com/site-deploys/notifications/#outgoing-webhooks" style="text-decoration: underline;">Outgoing webhooks</a> in Netlify.</p>
+        <ul>
+            <li><strong>Deploy started</strong>: {{vm.currentDomain}}/Umbraco/api/Netlify/SetProgress?isSuccess=true</li>
+            <li><strong>Deploy succeeded</strong>: {{vm.currentDomain}}/Umbraco/api/Netlify/SetProgress?isSuccess=true</li>
+            <li><strong>Deploy failed</strong>: {{vm.currentDomain}}/Umbraco/api/Netlify/SetProgress?isSuccess=false</li>
+        </ul>
+    </div>
+</div>
