@@ -1,0 +1,29 @@
+﻿<div ng-controller="Enterspeed.Deploy.SSG.Services.Netlify.Content as vm">
+    
+    <div class="netlify-columns">
+        <div class="netlify-column">
+            <h3>Deploy</h3>
+            <p>By pressing the <em>Deploy to Netlify</em> button <br /> a build and deploy will be queued in Netlify.</p>
+            <button class="btn umb-button__button btn-action umb-button-- umb-outline" type="button" ng-click="vm.deploy()" ng-disabled="vm.loading">
+                Deploy to Netlify
+            </button>
+        </div>
+        <div class="netlify-column">
+            <h3>Deployment progress</h3>
+            <p ng-if="vm.width > 0 && vm.progress.building.deploymentData.name">Deployment {{vm.finishedDeploy ? "finished" : "started"}} for: <strong>{{vm.progress.building.deploymentData.name}}</strong></p>
+            <div class="netlify-progress">
+                <span ng-if="vm.width == 0" class="netlify-progress-waiting">Deployment not intiated</span>
+                <div class="netlify-progress-bar" role="progressbar" style="width: {{vm.width}}%">
+                    {{vm.statusMessage}}
+                </div>
+            </div>
+            <div ng-if="vm.finishedDeploy">
+                <h4>URLs</h4>
+                <ul>
+                    <li><strong>Preview URL:</strong> <a href="{{vm.finishedDeploymentData.deploymentData.links.permalink}}">{{vm.finishedDeploymentData.deploymentData.links.permalink}}</a></li>
+                    <li><strong>Admin URL:</strong> <a href="{{vm.finishedDeploymentData.deploymentData.admin_url}}">{{vm.finishedDeploymentData.deploymentData.admin_url}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

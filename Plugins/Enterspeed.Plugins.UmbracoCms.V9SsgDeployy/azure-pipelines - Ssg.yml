@@ -1,0 +1,134 @@
+variables:
+  projectName: 'Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy'
+  projectFolder: 'src'
+  project: '$(projectFolder)/$(projectName).csproj'
+  nuSpec: '$(projectFolder)/_nuget/$(projectName).nuspec'
+  majorVersion: 0
+  minorVersion: 1
+  patchVersion: 1
+
+  version: $[format('{0}.{1}.{2}', variables.majorVersion, variables.minorVersion, variables.patchVersion)]
+  ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+    releaseOnNuget: true  
+    
+    semVersion: $[format('{0}', variables.version)]
+    buildName: $[format('{0}', variables.semVersion)]
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/feature/') }}:
+    releaseOnNuget: false
+    semVersionBase: $[format('{0}-feature.{1}', variables.version, variables['Build.SourceBranchName'])]
+    semVersionRev: $[counter(variables.semVersionBase, 0)]
+    semVersion: $[format('{0}.{1}', variables.semVersionBase, variables.semVersionRev)]
+    buildName: $[format('Feature - {0}', variables.semVersion)]
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}: # Pull requests
+    releaseOnNuget: false
+    semVersionBase: $[format('{0}-pr.{1}', variables.version, variables['System.PullRequest.PullRequestId'])]
+    semVersionRev: $[counter(variables.semVersionBase, 0)] 
+    semVersion: $[format('{0}.{1}', variables.semVersionBase, variables.semVersionRev)]
+    buildName: $[format('Pull Request - {0}', variables.semVersion)]
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/bugfix/') }}:
+    releaseOnNuget: false
+    semVersionBase: $[format('{0}-bugfix.{1}', variables.version, variables['Build.SourceBranchName'])]
+    semVersionRev: $[counter(variables.semVersionBase, 0)]
+    semVersion: $[format('{0}.{1}', variables.semVersionBase, variables.semVersionRev)]
+    buildName: $[format('Bugfix - {0}', variables.semVersion)]
+
+name: $(BuildID) - $(buildName)
+trigger:
+  branches:
+    include:
+      - master
+      - feature/*
+      - bugfix/*
+  paths:
+    exclude:
+      - /**/*.md
+
+pr:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - /**/*.md
+
+stages:
+  - stage: Build
+    displayName: Build project
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: windows-latest
+          demands:
+            - msbuild
+            - visualstudio
+        steps:
+           # NuGet
+          - task: NuGetToolInstaller@1
+            displayName: NuGet install
+            inputs:
+              versionSpec: 4.8.1
+
+          - task: NuGetCommand@2
+            displayName: NuGet restore
+            inputs:
+              command: "restore"
+              restoreSolution: $(project)
+              feedsToUse: config
+              nugetConfigPath: ./NuGet.Config
+
+          # Build solution
+          - task: VSBuild@1
+            displayName: Build solution
+            inputs:
+              solution: '$(project)'
+              platform: 'AnyCPU'
+              configuration: 'Release'
+              maximumCpuCount: true
+
+          # Pack NuGet
+          - task: NuGetCommand@2
+            inputs:
+              command: "pack"
+              packagesToPack: $(nuSpec)
+              versioningScheme: byEnvVar
+              versionEnvVar: semVersion
+              includeSymbols: false
+
+          # Publish artifacts
+          - task: PublishPipelineArtifact@1
+            displayName: Publish artifact - nupkg
+            inputs:
+              targetPath: "$(Build.ArtifactStagingDirectory)"
+              artifact: nupkg
+
+  - stage: Release
+    displayName: Release
+    condition: and(succeeded(), eq(variables.releaseOnNuget, 'true'))
+    jobs:
+      - deployment: ReleaseNuGet
+        displayName: Release on NuGet.org
+        environment: NuGetOrg
+        pool:
+          vmImage: ubuntu-latest
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                  persistCredentials: true
+                  clean: true
+                  fetchDepth: 1
+
+                # Tag release in git
+                - task: Bash@3
+                  displayName: Tag version in git
+                  inputs:
+                    targetType: inline
+                    script: |
+                      git tag $(projectName)-$(semVersion)
+                      git push --tags
+                - task: NuGetAuthenticate@0
+                  displayName: 'NuGet Authenticate'
+                - script: nuget push $(Pipeline.Workspace)/**/*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey $(NugetApiKey) -SkipDuplicate -NoSymbols
+                  displayName: 'Push to NuGet.org'

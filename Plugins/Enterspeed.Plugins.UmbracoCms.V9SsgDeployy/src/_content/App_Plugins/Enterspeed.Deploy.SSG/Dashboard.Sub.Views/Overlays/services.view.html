@@ -1,0 +1,16 @@
+﻿<div ng-controller="Enterspeed.Deploy.SSG.Overlays.Services as vm" class="umb-variant-selector-overlay">
+    <div>
+        <div class="mb3">
+            <ul class="umb-tree">
+                <li class="umb-animated umb-tree-item has-children" ng-repeat="service in model.services">
+                    <div class="umb-tree-item__inner" style="padding-left: 20px;">
+                        <i class="umb-tree-icon icon-umb-deploy"></i>
+                        <a class="umb-tree-item__label" href="javascript:void(0)" ng-click="vm.select(service)">
+                            {{service.name}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
