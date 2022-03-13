@@ -26,7 +26,7 @@
 
         enterspeedSsgDeploymentResource.saveConfiguration(vm.configuration)
             .then(function (result) {
-                var status = result.data.statusCode;
+                var status = result.status;
                 if (status === 204 || status === 200) {
                     notificationsService.success("Configuration saved");
                     vm.setPristine();
@@ -42,7 +42,7 @@
             });
     };
 
-    vm.addService = function() {
+    vm.addService = function () {
         overlayService.open({
             services: vm.configuration.availableServices,
             view: "/App_Plugins/Enterspeed.Deploy.SSG/Dashboard.Sub.Views/Overlays/services.view.html",
@@ -52,14 +52,14 @@
                 vm.configuration.configuredServices[model.alias] = model;
                 overlayService.close();
             },
-            close: function() {
+            close: function () {
                 overlayService.close();
             }
         });
     }
 
-    vm.trash = function(service) {
-        delete vm.configuration.configuredServices [service.alias];
+    vm.trash = function (service) {
+        delete vm.configuration.configuredServices[service.alias];
     }
 
     function notifyErrors(data, errorMessage) {

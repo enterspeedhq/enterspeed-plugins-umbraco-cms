@@ -5,6 +5,7 @@ using Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Services;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.BackOffice.Filters;
+using Umbraco.Cms.Web.Common.Attributes;
 
 namespace Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Controllers
 {
@@ -29,11 +30,11 @@ namespace Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveConfiguration([FromBody] SsgConfiguration configuration)
+        public IActionResult SaveConfiguration(SaveSsgConfigurationDto saveSsgConfigurationDto)
         {
             try
             {
-                _configurationService.Save(configuration);
+                _configurationService.Save(saveSsgConfigurationDto);
             }
             catch (Exception ex)
             {

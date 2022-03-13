@@ -5,6 +5,6 @@ namespace Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Services
     public interface ISsgConfigurationService
     {
         SsgConfiguration Get();
-        void Save(SsgConfiguration configuration);
+        void Save(SaveSsgConfigurationDto saveSsgConfigurationDto);
     }
 }

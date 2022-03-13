@@ -11,7 +11,7 @@ namespace Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Services
     public class SsgConfigurationService : ISsgConfigurationService
     {
         private readonly SsgServiceCollection _ssgServiceCollection;
-        private readonly string _configPath = AppDomain.CurrentDomain.BaseDirectory + "/Config/Enterspeed.SSG.json";
+        private readonly string _configPath = AppDomain.CurrentDomain.BaseDirectory + "/umbraco/Config/Enterspeed.SSG.json";
 
         public SsgConfigurationService(
             SsgServiceCollection ssgServiceCollection)
@@ -38,16 +38,16 @@ namespace Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Services
             };
         }
 
-        public void Save(SsgConfiguration configuration)
+        public void Save(SaveSsgConfigurationDto saveSsgConfigurationDto)
         {
-            if (configuration == null)
+            if (saveSsgConfigurationDto == null)
             {
                 return;
             }
 
             var configurationDto = new SsgConfigurationDto
             {
-                ConfiguredServices = configuration.ConfiguredServices
+                ConfiguredServices = saveSsgConfigurationDto.ConfiguredServices
             };
 
             WriteConfiguration(configurationDto);
