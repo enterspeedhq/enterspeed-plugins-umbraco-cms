@@ -1,6 +1,6 @@
 variables:
   projectName: 'Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy'
-  pluginFolder: 'plugins/$(projectName)';
+  pluginFolder: 'plugins/$(projectName)'
   projectFolder: '$(pluginFolder)/src'
   project: '$(projectFolder)/$(projectName).csproj'
   nuSpec: '$(projectFolder)/_nuget/$(projectName).nuspec'
