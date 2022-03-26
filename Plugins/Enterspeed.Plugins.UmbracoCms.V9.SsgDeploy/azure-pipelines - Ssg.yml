@@ -82,14 +82,15 @@ stages:
               projects: $(project)
               arguments: "--no-restore --configuration Release /p:Version=$(semVersion)"
 
-          # Pack NuGet
-          - task: NuGetCommand@2
+         # Pack NuGet
+          - task: DotNetCoreCLI@2
+            displayName: Dotnet pack
             inputs:
-              command: "pack"
+              command: pack
+              outputDir: "$(Build.ArtifactStagingDirectory)/NuGet"
               packagesToPack: $(project)
               versioningScheme: byEnvVar
               versionEnvVar: semVersion
-              includeSymbols: false
 
           # Publish artifacts
           - task: PublishPipelineArtifact@1
