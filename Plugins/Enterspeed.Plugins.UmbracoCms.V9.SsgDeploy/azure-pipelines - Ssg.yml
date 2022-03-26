@@ -23,7 +23,7 @@ variables:
   ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}: # Pull requests
     releaseOnNuget: false
     semVersionBase: $[format('{0}-pr.{1}', variables.version, variables['System.PullRequest.PullRequestId'])]
-    semVersionRev: $[counter(variables.semVersionBase, 0)] 
+    semVersionRev: $[counter(variables.semVe$(pluginFolder)/Enterspeed.Plugins.UmbracoCms.V9SsgDeploy.sln"rsionBase, 0)] 
     semVersion: $[format('{0}.{1}', variables.semVersionBase, variables.semVersionRev)]
     buildName: $[format('Pull Request - {0}', variables.semVersion)]
   ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/bugfix/') }}:
@@ -70,7 +70,7 @@ stages:
             displayName: Dotnet restore
             inputs:
               command: restore
-              projects: "$(pluginFolder)/Enterspeed.Plugins.UmbracoCms.V9SsgDeploy.sln"
+              projects: "$(pluginFolder)/Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.sln"
               feedsToUse: config
               nugetConfigPath: "$(System.DefaultWorkingDirectory)/NuGet.Config"
           
