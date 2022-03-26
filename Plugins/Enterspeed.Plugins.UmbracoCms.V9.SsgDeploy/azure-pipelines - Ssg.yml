@@ -1,6 +1,7 @@
 variables:
   projectName: 'Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy'
-  projectFolder: 'src'
+  pluginFolder: 'plugins/$(projectName)';
+  projectFolder: '$(pluginFolder)/src'
   project: '$(projectFolder)/$(projectName).csproj'
   nuSpec: '$(projectFolder)/_nuget/$(projectName).nuspec'
   majorVersion: 0
@@ -42,7 +43,8 @@ trigger:
   paths:
     exclude:
       - /**/*.md
-
+    include:
+      - plugins/Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy/src
 pr:
   branches:
     include:
@@ -50,6 +52,8 @@ pr:
   paths:
     exclude:
       - /**/*.md
+    include:
+      - plugins/Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy/src
 
 stages:
   - stage: Build
@@ -58,39 +62,31 @@ stages:
       - job: Build
         displayName: Build
         pool:
-          vmImage: windows-latest
-          demands:
-            - msbuild
-            - visualstudio
+          vmImage: ubuntu-latest
         steps:
+
            # NuGet
-          - task: NuGetToolInstaller@1
-            displayName: NuGet install
+          - task: DotNetCoreCLI@2
+            displayName: Dotnet restore
             inputs:
-              versionSpec: 4.8.1
-
-          - task: NuGetCommand@2
-            displayName: NuGet restore
-            inputs:
-              command: "restore"
-              restoreSolution: $(project)
+              command: restore
+              projects: "$(pluginFolder)/Enterspeed.Plugins.UmbracoCms.V9SsgDeploy.sln"
               feedsToUse: config
-              nugetConfigPath: ./NuGet.Config
-
+              nugetConfigPath: "$(System.DefaultWorkingDirectory)/NuGet.Config"
+          
           # Build solution
-          - task: VSBuild@1
-            displayName: Build solution
+          - task: DotNetCoreCLI@2
+            displayName: Dotnet build
             inputs:
-              solution: '$(project)'
-              platform: 'AnyCPU'
-              configuration: 'Release'
-              maximumCpuCount: true
+              command: build
+              projects: $(project)
+              arguments: "--no-restore --configuration Release /p:Version=$(semVersion)"
 
           # Pack NuGet
           - task: NuGetCommand@2
             inputs:
               command: "pack"
-              packagesToPack: $(nuSpec)
+              packagesToPack: $(project)
               versioningScheme: byEnvVar
               versionEnvVar: semVersion
               includeSymbols: false
@@ -99,36 +95,36 @@ stages:
           - task: PublishPipelineArtifact@1
             displayName: Publish artifact - nupkg
             inputs:
-              targetPath: "$(Build.ArtifactStagingDirectory)"
+              targetPath: "$(Build.ArtifactStagingDirectory)/NuGet"
               artifact: nupkg
 
-  - stage: Release
-    displayName: Release
-    condition: and(succeeded(), eq(variables.releaseOnNuget, 'true'))
-    jobs:
-      - deployment: ReleaseNuGet
-        displayName: Release on NuGet.org
-        environment: NuGetOrg
-        pool:
-          vmImage: ubuntu-latest
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - checkout: self
-                  persistCredentials: true
-                  clean: true
-                  fetchDepth: 1
+  # - stage: Release
+  #   displayName: Release
+  #   condition: and(succeeded(), eq(variables.releaseOnNuget, 'true'))
+  #   jobs:
+  #     - deployment: ReleaseNuGet
+  #       displayName: Release on NuGet.org
+  #       environment: NuGetOrg
+  #       pool:
+  #         vmImage: ubuntu-latest
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - checkout: self
+  #                 persistCredentials: true
+  #                 clean: true
+  #                 fetchDepth: 1
 
-                # Tag release in git
-                - task: Bash@3
-                  displayName: Tag version in git
-                  inputs:
-                    targetType: inline
-                    script: |
-                      git tag $(projectName)-$(semVersion)
-                      git push --tags
-                - task: NuGetAuthenticate@0
-                  displayName: 'NuGet Authenticate'
-                - script: nuget push $(Pipeline.Workspace)/**/*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey $(NugetApiKey) -SkipDuplicate -NoSymbols
-                  displayName: 'Push to NuGet.org'
+  #               # Tag release in git
+  #               - task: Bash@3
+  #                 displayName: Tag version in git
+  #                 inputs:
+  #                   targetType: inline
+  #                   script: |
+  #                     git tag $(projectName)-$(semVersion)
+  #                     git push --tags
+  #               - task: NuGetAuthenticate@0
+  #                 displayName: 'NuGet Authenticate'
+  #               - script: nuget push $(Pipeline.Workspace)/**/*.nupkg -Source https://api.nuget.org/v3/index.json -ApiKey $(NugetApiKey) -SkipDuplicate -NoSymbols
+  #                 displayName: 'Push to NuGet.org'
