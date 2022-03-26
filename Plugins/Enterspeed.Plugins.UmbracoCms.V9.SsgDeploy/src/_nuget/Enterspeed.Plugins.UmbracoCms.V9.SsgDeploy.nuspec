@@ -19,6 +19,5 @@
   <files>
     <file src="..\bin\Release\net6.0\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.dll" target="lib\net6.0" />
     <file src="..\bin\Release\net6.0\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.pdb" target="lib\net6.0" />
-    <file src="..\_content\**\*" target="content" />
   </files>
 </package>
