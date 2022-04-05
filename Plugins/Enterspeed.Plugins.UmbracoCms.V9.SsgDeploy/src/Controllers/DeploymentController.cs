@@ -5,7 +5,6 @@ using Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Services;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.BackOffice.Filters;
-using Umbraco.Cms.Web.Common.Attributes;
 
 namespace Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.Controllers
 {

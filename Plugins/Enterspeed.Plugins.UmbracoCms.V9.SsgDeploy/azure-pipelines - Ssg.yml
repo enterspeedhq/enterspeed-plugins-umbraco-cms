@@ -101,6 +101,8 @@ stages:
 
   - stage: Release
     displayName: Release
+    variables:
+      - group: 'OpenSourceProjects'
     condition: and(succeeded(), eq(variables.releaseOnNuget, 'true'))
     jobs:
       - deployment: ReleaseNuGet
