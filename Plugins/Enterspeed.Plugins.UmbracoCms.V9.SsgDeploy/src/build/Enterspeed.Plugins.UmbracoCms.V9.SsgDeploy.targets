@@ -1,0 +1,27 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <EnterspeedPluginsUmbracoCmsV9SsgDeployContentFilesPath>$(MSBuildThisFileDirectory)..\App_Plugins\Enterspeed.Deploy.SSG\**\*.*</EnterspeedPluginsUmbracoCmsV9SsgDeployContentFilesPath>
+    </PropertyGroup>
+
+    <Target Name="CopyEnterspeedPluginsUmbracoCmsV9SsgDeployAssets" BeforeTargets="Build">
+        <ItemGroup>
+            <EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles Include="$(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFilesPath)" />
+        </ItemGroup>
+        <Message Text="Copying Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy files: $(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFilesPath) - #@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles->Count()) files"  Importance="high" />
+        <Copy
+            SourceFiles="@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles)"
+            DestinationFiles="@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy\%(RecursiveDir)%(Filename)%(Extension)')"
+            SkipUnchangedFiles="true" />
+
+    </Target>
+
+    <Target Name="ClearEnterspeedPluginsUmbracoCmsV9SsgDeployAssets" BeforeTargets="Clean">
+        <ItemGroup>
+            <EnterspeedPluginsUmbracoCmsV9SsgDeployDir Include="$(MSBuildProjectDirectory)\App_Plugins\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy\" />
+        </ItemGroup>
+        <Message Text="Clear old Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy data"  Importance="high" />
+        <RemoveDir Directories="@(EnterspeedPluginsUmbracoCmsV9SsgDeployDir)"  />
+    </Target>
+
+</Project>
