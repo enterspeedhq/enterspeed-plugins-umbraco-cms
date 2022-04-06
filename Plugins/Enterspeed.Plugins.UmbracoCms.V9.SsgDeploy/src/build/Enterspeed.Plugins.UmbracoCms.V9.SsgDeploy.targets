@@ -11,14 +11,14 @@
         <Message Text="Copying Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy files: $(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFilesPath) - #@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles->Count()) files"  Importance="high" />
         <Copy
             SourceFiles="@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles)"
-            DestinationFiles="@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy\%(RecursiveDir)%(Filename)%(Extension)')"
+            DestinationFiles="@(EnterspeedPluginsUmbracoCmsV9SsgDeployContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Enterspeed.Deploy.SSG\%(RecursiveDir)%(Filename)%(Extension)')"
             SkipUnchangedFiles="true" />
 
     </Target>
 
     <Target Name="ClearEnterspeedPluginsUmbracoCmsV9SsgDeployAssets" BeforeTargets="Clean">
         <ItemGroup>
-            <EnterspeedPluginsUmbracoCmsV9SsgDeployDir Include="$(MSBuildProjectDirectory)\App_Plugins\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy\" />
+            <EnterspeedPluginsUmbracoCmsV9SsgDeployDir Include="$(MSBuildProjectDirectory)\App_Plugins\Enterspeed.Deploy.SSG\" />
         </ItemGroup>
         <Message Text="Clear old Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy data"  Importance="high" />
         <RemoveDir Directories="@(EnterspeedPluginsUmbracoCmsV9SsgDeployDir)"  />
