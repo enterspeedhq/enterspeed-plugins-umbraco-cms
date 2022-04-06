@@ -11,21 +11,21 @@
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.3.1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\dashboard.controller.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\dashboard.html" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Resources\deploy.resources.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Controllers\configuration.controller.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Controllers\Overlays\services.controller.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Views\configuration.view.html" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Views\Overlays\services.view.html" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\lang\en-US.xml" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-configuration.controller.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-configuration.view.html" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-content.controller.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-content.view.html" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-styles.css" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\settings-dashboard.controller.js" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\settings-dashboard.html" />
-    <Content Include="_content\App_Plugins\Enterspeed.Deploy.SSG\styles.css" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\dashboard.controller.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\dashboard.html" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Resources\deploy.resources.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Controllers\configuration.controller.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Controllers\Overlays\services.controller.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Views\configuration.view.html" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Dashboard.Sub.Views\Overlays\services.view.html" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\lang\en-US.xml" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-configuration.controller.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-configuration.view.html" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-content.controller.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-content.view.html" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\Services\Netlify\netlify-styles.css" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\settings-dashboard.controller.js" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\settings-dashboard.html" />
+    <Content Include="App_Plugins\Enterspeed.Deploy.SSG\styles.css" />
   </ItemGroup>
 </Project>
