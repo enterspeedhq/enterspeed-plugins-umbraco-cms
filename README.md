@@ -4,4 +4,4 @@
 
 | Name                                            | Version           |
 | -------------                                   |:-------------     |
-| Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy      | [![NuGet version](https://img.shields.io/nuget/v/Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy)](https://www.nuget.org/packages/Enterspeed.Plugins.UmbracoCms.V8.SsgDeploy/)    |
+| Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy      | [![NuGet version](https://img.shields.io/nuget/v/Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy)](https://www.nuget.org/packages/Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy/)    |

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy</id>
+    <version>0.0.0</version>
+    <authors>Enterspeed</authors>
+    <owners>Enterspeed</owners>
+    <projectUrl>https://www.enterspeed.com/</projectUrl>
+    <repository type="git" url="https://github.com/enterspeedhq/enterspeed-plugins-umbraco-9-cms"></repository>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <description>Ssg deployment plugin for Umbraco 9</description>
+    <tags>Ssg, Umbraco 9</tags>
+    <dependencies>
+      <dependency id="Umbraco.Cms.Core" version="[9,10.0)" />
+      <dependency id="Umbraco.Cms.Web.BackOffice" version="[9,10.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\bin\Release\net5.0\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.dll" target="lib\net5.0" />
+    <file src="..\bin\Release\net5.0\Enterspeed.Plugins.UmbracoCms.V9.SsgDeploy.pdb" target="lib\net5.0" />
+  </files>
+</package>

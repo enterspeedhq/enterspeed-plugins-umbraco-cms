@@ -1,0 +1,28 @@
+﻿{
+  "javascript": [
+    // Controllers
+    "~/App_Plugins/Enterspeed.Deploy.SSG/dashboard.controller.js",
+    "~/App_Plugins/Enterspeed.Deploy.SSG/settings-dashboard.controller.js",
+    "~/App_Plugins/Enterspeed.Deploy.SSG/Dashboard.Sub.Controllers/configuration.controller.js",
+    "~/App_Plugins/Enterspeed.Deploy.SSG/Dashboard.Sub.Controllers/Overlays/services.controller.js",
+    "~/App_Plugins/Enterspeed.Deploy.SSG/Services/Netlify/netlify-configuration.controller.js",
+    "~/App_Plugins/Enterspeed.Deploy.SSG/Services/Netlify/netlify-content.controller.js",
+
+    // Resources
+    "~/App_Plugins/Enterspeed.Deploy.SSG/Dashboard.Resources/deploy.resources.js"
+  ],
+  "css": [
+    "~/App_Plugins/Enterspeed.Deploy.SSG/Services/Netlify/netlify-styles.css"
+  ], 
+  "dashboards": [
+    {
+      "alias": "EnterspeedDeployDashboard",
+      "view": "~/App_Plugins/Enterspeed.Deploy.SSG/dashboard.html",
+      "sections": [ "content" ],
+      "weight": 100,
+      "access": [
+        { "grant": "admin" }
+      ]
+    }
+  ]
+}
